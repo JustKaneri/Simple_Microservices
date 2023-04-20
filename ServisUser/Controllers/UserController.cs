@@ -26,5 +26,14 @@ namespace ServisUser.Controllers
 
             return Ok(users);
         }
+
+        [HttpPost("user")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
+        public async Task<IActionResult> CreateUser(User user)
+        {
+            var users = await _repository.CreateUser(user);
+
+            return Ok(users);
+        }
     }
 }
