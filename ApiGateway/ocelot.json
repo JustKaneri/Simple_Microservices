@@ -24,10 +24,57 @@
       ],
       "UpstreamPathTemplate": "/apigateway/user",
       "UpstreamHttpMethod": [ "Post" ]
-    }
+    },
 
     //Product Servis
-    //***
+    {
+      "DownstreamPathTemplate": "/api/v1/products",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5227
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/products",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/product?id={id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5227
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/product?id={id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5227
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/product",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/product-type",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5227
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/product-type",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
 
     //Order Servis
     //***
