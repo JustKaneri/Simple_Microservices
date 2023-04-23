@@ -1,5 +1,6 @@
 {
   "Routes": [
+    //User servis
     {
       "DownstreamPathTemplate": "/api/v1/users",
       "DownstreamScheme": "http",
@@ -24,6 +25,12 @@
       "UpstreamPathTemplate": "/apigateway/user",
       "UpstreamHttpMethod": [ "Post" ]
     }
+
+    //Product Servis
+    //***
+
+    //Order Servis
+    //***
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5087"
