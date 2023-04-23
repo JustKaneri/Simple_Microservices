@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ServisProduct.Model
 {
@@ -18,7 +19,8 @@ namespace ServisProduct.Model
         public int TypeId { get; set; }
 
         [ForeignKey("TypeId")]
-        public TypeProduct Type { get; set; }
+        [JsonIgnore]
+        public TypeProduct? Type { get; set; }
 
         [Column("Count")]
         public int Count { get; set; }

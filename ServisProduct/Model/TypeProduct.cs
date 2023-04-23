@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ServisProduct.Model
 {
@@ -12,7 +13,7 @@ namespace ServisProduct.Model
         [Column("Name")]
         [MaxLength(255)]    
         public string Name { get; set; }
-
+        [JsonIgnore]
         public List<Product> Product { get; set; }  
     }
 }

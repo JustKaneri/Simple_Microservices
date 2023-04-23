@@ -18,15 +18,23 @@ namespace ServisProduct.Repository
         {
             entity.TypeId = _context.TypeProducts.First().Id;
 
-            _context.Products.Add(entity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Products.Add(entity);
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
+            
 
             return entity;
         }
 
         public async Task<ICollection<Product>> GetAll()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Include(t => t.Type).ToListAsync();
         }
 
         public async Task<Product> GetCurrent(int id)
