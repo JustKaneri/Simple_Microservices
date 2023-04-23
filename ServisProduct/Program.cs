@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ServisProduct.Data;
+using ServisProduct.Interface;
+using ServisProduct.Model;
+using ServisProduct.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
+builder.Services.AddScoped<IProductTypeRepository<TypeProduct>, ProductTypeRepository>();
 
 builder.Services.AddDbContext<DataContext>((options) =>
 {
