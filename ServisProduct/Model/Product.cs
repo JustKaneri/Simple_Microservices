@@ -15,9 +15,9 @@ namespace ServisProduct.Model
         [MaxLength(255)]
         public string Name { get; set; }
 
-        [ForeignKey("Id")]
-        public int IdType { get; set; }
+        public int TypeId { get; set; }
 
+        [ForeignKey("TypeId")]
         public TypeProduct Type { get; set; }
 
         [Column("Count")]
