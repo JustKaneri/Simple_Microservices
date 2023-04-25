@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ServisOrder.Data;
+using ServisOrder.Interface;
+using ServisOrder.Model;
+using ServisOrder.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 
 builder.Services.AddDbContext<DataContext>((options) =>
 {
