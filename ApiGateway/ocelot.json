@@ -74,10 +74,33 @@
       ],
       "UpstreamPathTemplate": "/apigateway/product-type",
       "UpstreamHttpMethod": [ "Get" ]
-    }
+    },
 
     //Order Servis
-    //***
+    {
+      "DownstreamPathTemplate": "/api/v1/user/{id}/orders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5173
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/user/{id}/orders",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/user/{id}/order",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5173
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/user/{id}/order",
+      "UpstreamHttpMethod": [ "Post" ]
+    }
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5087"
