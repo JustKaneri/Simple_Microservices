@@ -9,10 +9,12 @@ namespace ServisProduct.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository<Product> _repository;
+        private readonly IRabbitMQRepository _mQRepository;
 
-        public ProductController(IProductRepository<Product> repository)
+        public ProductController(IProductRepository<Product> repository,IRabbitMQRepository mQRepository)
         {
             _repository = repository;
+            _mQRepository = mQRepository;
         }
 
         [HttpGet("products")]
@@ -48,6 +50,8 @@ namespace ServisProduct.Controllers
 
             if (result == null)
                 return BadRequest("Не удалось создать продукт");
+
+            _mQRepository.SendMessage(result);
 
             return Ok(result);
         }

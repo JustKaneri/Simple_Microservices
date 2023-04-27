@@ -6,7 +6,7 @@ using ServisProduct.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Configuration.AddJsonFile("rabbitConfig.json");
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -14,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IProductTypeRepository<TypeProduct>, ProductTypeRepository>();
+builder.Services.AddScoped<IRabbitMQRepository, RabbitRepository>();
 
 builder.Services.AddDbContext<DataContext>((options) =>
 {
