@@ -6,11 +6,14 @@ using ServisUser.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("rabbitConfig.json");
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IUserRepository<User>, UserRepository>();
+builder.Services.AddScoped<IRabbitMQRepository, RabbitRepository>();
 
 builder.Services.AddDbContext<DataContext>((options) =>
 {

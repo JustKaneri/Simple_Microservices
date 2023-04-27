@@ -9,10 +9,12 @@ namespace ServisUser.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository<User> _repository;
+        private readonly IRabbitMQRepository _mQRepository;
 
-        public UserController(IUserRepository<User> repository)
+        public UserController(IUserRepository<User> repository, IRabbitMQRepository mQRepository)
         {
             _repository = repository;
+            _mQRepository = mQRepository;
         }
 
         [HttpGet("users")]
@@ -32,6 +34,8 @@ namespace ServisUser.Controllers
         public async Task<IActionResult> CreateUser(User user)
         {
             var users = await _repository.CreateUser(user);
+
+            _mQRepository.SendMessage(users.Id);
 
             return Ok(users);
         }

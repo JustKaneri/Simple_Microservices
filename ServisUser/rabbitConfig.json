@@ -1,0 +1,6 @@
+{
+  "Host": {
+    "Name": "localhost",
+    "Queue": "createUser"
+  }
+}
