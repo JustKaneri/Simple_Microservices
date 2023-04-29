@@ -1,0 +1,10 @@
+{
+  "User": {
+    "Host": "localhost",
+    "Queue": "createUser"
+  },
+  "Product": {
+    "Host": "localhost",
+    "Queue": "createProduct"
+  }
+}

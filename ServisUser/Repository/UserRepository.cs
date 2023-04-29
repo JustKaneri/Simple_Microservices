@@ -26,6 +26,7 @@ namespace ServisUser.Repository
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
+                return null;
             }
 
             return user;

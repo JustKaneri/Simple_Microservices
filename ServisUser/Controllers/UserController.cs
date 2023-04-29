@@ -35,6 +35,11 @@ namespace ServisUser.Controllers
         {
             var users = await _repository.CreateUser(user);
 
+            if(users == null)
+            {
+                return BadRequest("Не удалось создать пользователя");
+            }
+
             _mQRepository.SendMessage(users.Id);
 
             return Ok(users);
