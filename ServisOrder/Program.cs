@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
+builder.Services.AddScoped<ICasheRepository<UserCashe>, UserCasheRepository>();
 
 builder.Services.AddDbContext<DataContext>((options) =>
 {
