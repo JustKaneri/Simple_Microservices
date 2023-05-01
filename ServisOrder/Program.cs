@@ -4,6 +4,7 @@ using ServisOrder.Data;
 using ServisOrder.Interface;
 using ServisOrder.Model;
 using ServisOrder.Repository;
+using ServisOrder.Servises;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<ICasheRepository<UserCashe>, UserCasheRepository>();
+builder.Services.AddSingleton<CreatorSingeltonServis>();
 
 builder.Services.AddHostedService<UserRabbitServis>();
 

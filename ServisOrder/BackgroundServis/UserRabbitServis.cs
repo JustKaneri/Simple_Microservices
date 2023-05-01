@@ -2,6 +2,7 @@
 using RabbitMQ.Client.Events;
 using ServisOrder.Interface;
 using ServisOrder.Model;
+using ServisOrder.Servises;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Channels;
@@ -13,9 +14,9 @@ namespace ServisOrder.BackgroundServis
         private readonly IConnection _connect;
         private readonly IModel _model;
         private readonly string _queue;
-        private readonly ICasheRepository<UserCashe> _repository;
+        private readonly CreatorSingeltonServis _repository;
 
-        public UserRabbitServis(IConfiguration configuration, ICasheRepository<UserCashe> repository)
+        public UserRabbitServis(IConfiguration configuration, CreatorSingeltonServis repository)
         {
             _queue = configuration.GetSection("User:Queue").Value.ToString();
             var factory = new ConnectionFactory()
@@ -27,7 +28,9 @@ namespace ServisOrder.BackgroundServis
             _model = _connect.CreateModel();
 
             _model.QueueDeclare(queue: _queue, durable: false, exclusive: false, autoDelete: false, arguments: null);
-            
+
+
+            _repository = repository;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -40,7 +43,7 @@ namespace ServisOrder.BackgroundServis
             {
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                _repository.CreateEnity(int.Parse(content));
+                _repository.CreateUserCashe(int.Parse(content));
                 Console.WriteLine(content);
                 _model.BasicAck(ea.DeliveryTag, false);
             };
