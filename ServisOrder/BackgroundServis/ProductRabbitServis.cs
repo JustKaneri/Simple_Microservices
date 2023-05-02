@@ -1,24 +1,24 @@
-﻿using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
+﻿using RabbitMQ.Client.Events;
+using RabbitMQ.Client;
 using ServisOrder.Servises;
 using System.Text;
 
 namespace ServisOrder.BackgroundServis
 {
-    public class UserRabbitServis : BackgroundService
+    public class ProductRabbitServis : BackgroundService
     {
         private readonly IConnection _connect;
         private readonly IModel _model;
         private readonly string _queue;
         private readonly CreatorSingeltonServis _repository;
-        private static  EventingBasicConsumer consumer;
+        private static EventingBasicConsumer consumer;
 
-        public UserRabbitServis(IConfiguration configuration, CreatorSingeltonServis repository)
+        public ProductRabbitServis(IConfiguration configuration, CreatorSingeltonServis repository)
         {
-            _queue = configuration.GetSection("User:Queue").Value.ToString();
+            _queue = configuration.GetSection("Product:Queue").Value.ToString();
             var factory = new ConnectionFactory()
             {
-                HostName = configuration.GetSection("User:Host").Value
+                HostName = configuration.GetSection("Product:Host").Value
             };
 
             _connect = factory.CreateConnection();
@@ -34,13 +34,13 @@ namespace ServisOrder.BackgroundServis
         {
             stoppingToken.ThrowIfCancellationRequested();
 
-            consumer = new  EventingBasicConsumer(_model);
+            consumer = new EventingBasicConsumer(_model);
 
             consumer.Received += (ch, ea) =>
             {
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
 
-                _repository.CreateUserCashe(int.Parse(content));
+                _repository.CreateProductCashe(int.Parse(content));
                 Console.WriteLine(content);
                 _model.BasicAck(ea.DeliveryTag, false);
             };

@@ -51,7 +51,7 @@ namespace ServisProduct.Controllers
             if (result == null)
                 return BadRequest("Не удалось создать продукт");
 
-            _mQRepository.SendMessage(result);
+            _mQRepository.SendMessage(result.Id);
 
             return Ok(result);
         }

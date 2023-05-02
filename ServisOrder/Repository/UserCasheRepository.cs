@@ -1,4 +1,5 @@
-﻿using ServisOrder.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ServisOrder.Data;
 using ServisOrder.Interface;
 using ServisOrder.Model;
 
@@ -26,7 +27,7 @@ namespace ServisOrder.Repository
 
         public async Task<bool> IsExist(int id)
         {
-            return _context.UserCashes.FindAsync(id) != null;
+            return await _context.UserCashes.Where(u => u.IdUser == id).FirstOrDefaultAsync() != null;
         }
     }
 }

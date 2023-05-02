@@ -90,7 +90,7 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/user/{id}/order",
+      "DownstreamPathTemplate": "/api/v1/user/{id}/order?idProduct={idProduct}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -98,7 +98,7 @@
           "Port": 5173
         }
       ],
-      "UpstreamPathTemplate": "/apigateway/user/{id}/order",
+      "UpstreamPathTemplate": "/apigateway/user/{id}/order?idProduct={idProduct}",
       "UpstreamHttpMethod": [ "Post" ]
     }
   ],

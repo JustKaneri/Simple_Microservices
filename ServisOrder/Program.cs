@@ -16,10 +16,11 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<ICasheRepository<UserCashe>, UserCasheRepository>();
+builder.Services.AddScoped<ICasheRepository<ProductCashe>, ProductCasheRepository>();
 builder.Services.AddSingleton<CreatorSingeltonServis>();
 
 builder.Services.AddHostedService<UserRabbitServis>();
-
+builder.Services.AddHostedService<ProductRabbitServis>();
 
 builder.Services.AddDbContext<DataContext>((options) =>
 {

@@ -22,5 +22,15 @@ namespace ServisOrder.Servises
                 await servis.CreateEnity(id);
             }
         }
+
+        public async void CreateProductCashe(int id)
+        {
+            using (var scope = _factory.CreateScope())
+            {
+                var servis = scope.ServiceProvider.GetService<ICasheRepository<ProductCashe>>();
+
+                await servis.CreateEnity(id);
+            }
+        }
     }
 }
