@@ -9,5 +9,3 @@
 >> Microservice architecture 
 
 >> RabbitMQ (message broker)
-
->> NoSQL databases (Possible)
